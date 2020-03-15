@@ -196,7 +196,7 @@ int main() {
 
                 printf("%s\t%s\t%u\t%f\n", sort_names[i], fill_names[j], n, (double)(end - begin) / (double) CLOCKS_PER_SEC);
                 free(t);
-            }
+            } 
         }
     }
     return 0;
