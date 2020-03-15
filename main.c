@@ -128,9 +128,40 @@ void quick_sort(int *t, unsigned int n)
   QuickSort(t, 0, n - 1); // t to tablica, 0 to początek czyli left, n-1 to koniec tablicy czyli right,
 }
 
-void heap_sort(int *t, unsigned int n) {
+void heapify(int *t, int n, int i)
+    {
+        int largest = i;
+        int l = 2*i + 1;
+        int r = 2*i + 2;
+        if (l < n && t[l] > t[largest])
+            largest = l;
 
-}
+        if (r < n&&t[r] > t[largest])
+            largest=r;
+
+        if (largest!= i)
+        {
+            int temp = t[i];
+            t[i] = t[largest];
+            t[largest] = temp;
+
+            heapify(t,n , largest);
+        }
+    }
+
+    void heap_sort(int *t, unsigned int n) {
+          for (int i = n /2 - 1; i >= 0; i--)
+            heapify(t, n,i);
+
+        for (int i=n-1; i>=0; i--)
+        {
+            int temp = t[0];
+            t[0] =t[i];
+            t[i]= temp;
+
+            heapify(t, i, 0);
+        }
+    }
 
 void fill_random(int *t, unsigned int n) {
     for (unsigned int i = 0; i < n; i++) {
